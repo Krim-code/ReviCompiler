@@ -2,7 +2,7 @@ import llvmlite.binding as llvm
 
 
 class Optimization:
-    def __int__(self,module_ref):
+    def __init__(self,module_ref):
         self.module_ref = module_ref
         pass_manager_builder = llvm.create_pass_manager_builder()
 

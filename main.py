@@ -46,11 +46,11 @@ class Compiler:
         gen_module.module.triple = llvm.get_default_triple()
         gen_module.module.data_layout = target_machine.target_data
 
-        print(module_ref)
+        print(str(gen_module.module))
         check = input("you want to optimize this code [Y/N]: ").lower()
         if check == "y":
             print("---Optimization is enable----")
-            Optimization.__int__(self, module_ref)
+            Optimization(module_ref)
             print(module_ref)
         elif check == "n":
             print("---Optimization is disable----")
@@ -67,6 +67,7 @@ class Compiler:
         print('Program Revi - Execution time:', (end_time - start_time) * 1000, 'milliseconds')
 
         os.system(f"clang revi_c_.c -o revi_c_.exe")
+
 
         start_time = time.time()
         os.system("revi_c_")
