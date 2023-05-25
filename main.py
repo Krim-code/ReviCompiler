@@ -38,7 +38,7 @@ class Compiler:
 
         llvm.initialize()
         llvm.initialize_native_target()
-        llvm.initialize_native_asmprinter()
+        llvm.initialize_all_asmprinters()
 
         target = llvm.Target.from_default_triple()
         target_machine = target.create_target_machine(codemodel="small")
@@ -54,8 +54,14 @@ class Compiler:
             print(module_ref)
         elif check == "n":
             print("---Optimization is disable----")
+        print(f"{'Assembler':=^70}")
+        asm = target_machine.emit_assembly(module_ref)
+        print(asm)
+        open('revi.s','w').write(asm)
+
         obj = target_machine.emit_object(module_ref)
         open('revi.o', 'wb').write(obj)
+        open('revi.str', 'w').write(str(module_ref))
         print("=" * 25, "execute", "=" * 25)
         os.system(f"clang revi.o -o revi.exe")
 
@@ -74,8 +80,8 @@ class Compiler:
         end_time = time.time()
 
         print('Program C - Execution time:', (end_time - start_time) * 1000, 'milliseconds')
-        # del compiler files
-        [os.remove(trash) for trash in ["revi.o", "revi.exe"]]
+        # # del compiler files
+        # [os.remove(trash) for trash iyn ["revi.o", "revi.exe"]]
 
 
 if __name__ == '__main__':

@@ -11,8 +11,8 @@ int main() {
 } */
 int main() {
     int t = 0;
-    double a = 2.5;
-    int y = <<int>>(a);
-    print(y);
-    return 1;
+    t = 1+2;
+    t = 2+3;
+
+    return 0;
 }
