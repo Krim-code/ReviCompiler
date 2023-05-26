@@ -38,7 +38,7 @@ class Compiler:
 
         llvm.initialize()
         llvm.initialize_native_target()
-        llvm.initialize_all_asmprinters()
+        llvm.initialize_native_asmprinter()
 
         target = llvm.Target.from_default_triple()
         target_machine = target.create_target_machine(codemodel="small")
@@ -61,12 +61,12 @@ class Compiler:
 
         obj = target_machine.emit_object(module_ref)
         open('revi.o', 'wb').write(obj)
-        open('revi.str', 'w').write(str(module_ref))
+        # open('codegen/revi.str', 'w').write(str(module_ref))
         print("=" * 25, "execute", "=" * 25)
         os.system(f"clang revi.o -o revi.exe")
 
         start_time = time.time()
-        os.system("revi")
+        os.system("revi.exe")
         end_time = time.time()
 
         print("=" * 27, "end", "=" * 27)
