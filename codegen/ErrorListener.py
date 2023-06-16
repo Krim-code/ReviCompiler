@@ -21,6 +21,7 @@ class CustomRecognitionException(RecognitionException):
         self.column = column
         print(e.getMessage(), "at line", e.line, "column", e.column)
 
+
     # def reportAmbiguity(self, recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs):
     #     print("Ambiguity at index", startIndex)
     #     sys.exit("aa! errors!")
