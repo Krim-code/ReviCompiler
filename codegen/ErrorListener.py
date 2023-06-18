@@ -9,7 +9,7 @@ class MyErrorListener(ErrorListener):
         self.check = None
 
     def syntaxError(self, recognizer, offendingSymbol, line, column, message, e):
-        print("Syntax error at line", line, "column", column, ":", message)
+        print("Syntax error at line", line, ":", message)
         self.check = True
         # raise CustomRecognitionException("Token recognition error", recognizer, offendingSymbol, line, column, e)
 
